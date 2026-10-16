@@ -61,3 +61,12 @@ node create-pet-game/scripts/prepare-vibe-import.mjs \
 技能自带静态兼容检查及可选 Chrome/Chromium 预览工具，要求交付时分别报告静态、浏览器、模拟协议、真实宿主和物理双机测试。没有桌宠时仍能完成制作，但不能声称真实联机已验证。
 
 `create-pet-game/LICENSE` 覆盖技能及随附桥接/示例代码。生成器在 HTML 内保留这部分 MIT 许可；这不改变用户原创游戏内容的权利。使用第三方素材或引擎时另保留对应许可。
+
+
+## 无重启导入与复用产品动作
+
+制作并接入时，按 [在线导入避坑](create-pet-game/references/live-import.md) 完成形象/游戏的当前客户端登记及即时验证。离线进程写库、复制文件、看到卡片都不是完整验收。游戏库热刷新保留草稿、准备好的附件与进行中的对局；新内容以新导入/打开进入，不替换历史字节。
+
+Web 行走等交互优先用 [完整动作读取与换装订阅](create-pet-game/references/host-animations.md)，包含可离线打包的帧加载器与移动示例。HTML 读取并绘制自己的角色；桌面本体 playAnim 是插件上下文接口，没有网页端桌面 moveTo。新 Web 持续跟随换装，不要求重启。完整帧接口为 experimental，先探测并授权；没有已发布最低宿主版本承诺。
+
+Use the running client's import flow, then verify live rendering without restarting. Offline library writes are not live registration. Catalog refresh preserves drafts, prepared artifacts and active matches. New Web works reuse original animation pages and keep an appearance subscription; movement in the Web scene belongs to the work. Plugin-only desktop playback does not grant HTML desktop-window control. Feature-detect the experimental frame APIs; no released minimum host version or automatic migration of existing games is implied.

@@ -1,6 +1,6 @@
 # HTML/work SDK 契约快照
 
-核对日期：2026-10-14。以下是桌宠已实现的 HTML 作品能力，部分接口仍为 experimental。**不以应用版本号推测支持情况**；页面运行时探测 `window.pet` 和方法是否存在，必要时查询 capability。旧宿主不支持时显示明确提示，而不是降级成假联机。本包不包含宿主源码、安装包或私有服务地址。
+核对日期：2026-10-16。以下是桌宠已实现的 HTML 作品能力，部分接口仍为 experimental。**不以应用版本号推测支持情况**；页面运行时探测 `window.pet` 和方法是否存在，必要时查询 capability。旧宿主不支持时显示明确提示，而不是降级成假联机。本包不包含宿主源码、安装包或私有服务地址。
 
 ## 最小单文件声明
 
@@ -28,7 +28,11 @@ const character = await pet.character.getCurrent({states:['idle']});
 
 先请求 `idle`，不要假设每个角色都有 walk/greet。数据只含当前角色请求姿势的图像；不要把制作人的私有角色包打进公开作品。能力缺失或 `CHARACTER_STATE_UNAVAILABLE` 要有可见降级说明。
 
-### 实时换装外观（上版遗漏的接口）
+### 完整动作与连续换装
+
+新接口 `character.getAnimationCatalog()` / `getAnimation({state,variant?,offset?,limit?,signature?})` 支持 HTML work 读取完整原始帧，复用 character:read；用 character:watch 的 watch/next/unwatch 跟随当前形象。具体分页、版本竞争、可执行加载器和 Web 内移动示例见 [复用产品动画](host-animations.md)。getCurrent 代表图、完整动作帧和实时3D数据分别使用对应接口；普通 HTML 没有插件专用 pet.pet.playAnim 或桌面窗口位移方法。
+
+### 实时换装外观
 
 `await pet.character.getRealtime()` 使用同一个 `character:read` 权限。先探测方法和 `pet.capabilities.query('character.getRealtime')`。
 

@@ -6,7 +6,7 @@ import re
 import zipfile
 
 root=Path(__file__).resolve().parent
-version='0.2.1'
+version='0.2.2'
 files=sorted((root/'create-pet-game').rglob('*'))
 files=[p for p in files if p.is_file()]
 files += [root/'INSTALL.md',root/'install.mjs',root/'examples/pet-tictactoe.html',root/'examples/pet-strike.html']

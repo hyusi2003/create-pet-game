@@ -20,7 +20,7 @@ node install.mjs
 
 **Skill 装进 Codex，生成的 HTML 导入桌宠。** 玩家无需 Node、模型 API Key、自建服务器或源码。真实联机需要支持 HTML/work SDK v2、`sessions:connect` 和作品邀请的桌宠客户端；普通浏览器打开只是本地预览。
 
-完整说明见 [INSTALL.md](INSTALL.md)。也可下载 [独立技能压缩包](dist/create-pet-game-0.2.1.zip)，解压后运行安装器。安装器默认使用 `$CODEX_HOME/skills`，未设置时使用 `~/.codex/skills`，已有同名技能不会被覆盖。
+完整说明见 [INSTALL.md](INSTALL.md)。也可下载 [独立技能压缩包](dist/create-pet-game-0.2.2.zip)，解压后运行安装器。安装器默认使用 `$CODEX_HOME/skills`，未设置时使用 `~/.codex/skills`，已有同名技能不会被覆盖。
 
 ## 桌宠形象和风格
 
@@ -89,3 +89,12 @@ npm run pack
 ## 许可
 
 [MIT](LICENSE)。桥接和示例许可会随 HTML 保留；不改变用户原创游戏内容的权利，第三方素材另遵守其许可。本仓库不提供桌宠宿主源码、安装包或私有角色资产。
+
+
+## 0.2.2 无重启导入与复用产品动作
+
+制作并接入时，按 [在线导入避坑](create-pet-game/references/live-import.md) 完成形象/游戏的当前客户端登记及即时验证。离线进程写库、复制文件、看到卡片都不是完整验收。游戏库热刷新保留草稿、准备好的附件与进行中的对局；新内容以新导入/打开进入，不替换历史字节。
+
+Web 行走等交互优先用 [完整动作读取与换装订阅](create-pet-game/references/host-animations.md)，包含可离线打包的帧加载器与移动示例。HTML 读取并绘制自己的角色；桌面本体 playAnim 是插件上下文接口，没有网页端桌面 moveTo。新 Web 持续跟随换装，不要求重启。完整帧接口为 experimental，先探测并授权；没有已发布最低宿主版本承诺。
+
+Use the running client's import flow, then verify live rendering without restarting. Offline library writes are not live registration. Catalog refresh preserves drafts, prepared artifacts and active matches. New Web works reuse original animation pages and keep an appearance subscription; movement in the Web scene belongs to the work. Plugin-only desktop playback does not grant HTML desktop-window control. Feature-detect the experimental frame APIs; no released minimum host version or automatic migration of existing games is implied.

@@ -8,6 +8,9 @@
     "build:character": "node scripts/build-character.mjs",
     "test:character": "node --test tests/character.test.mjs",
     "test:vibe-import": "node --test tests/vibe-import.test.mjs",
+    "test:animations": "node --test tests/animations.test.mjs",
+    "test:host-live-import": "node tests/host-live-import.mjs",
+    "test:host:delivery": "npm run test:host-live-import",
     "test:character-browser": "node tests/character-browser.mjs examples/pet-strike.html --out evidence/character-browser",
     "test:examples": "node tests/example-protocol.mjs && node tests/example-gameplay.mjs examples/pet-tictactoe.html --out evidence/final-gameplay",
     "test:delivery": "npm test && npm run test:browser && npm run test:character-browser && npm run test:examples"
